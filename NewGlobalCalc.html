@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+	<html>
+		<head>
+			<title>
+				Calc Global Variable
+			</title>
+			<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+			<style>
+				#main
+					{
+						height:650px;
+						width:450px;
+						background-color:#C2E3F8;
+						border-radius:10px;
+					}
+				#display
+					{
+						height:20%;
+						width:100%;
+						background:#C9DAF8;
+						background-color:black;
+						display:flex;
+						flex-direction:column;
+						justify-content:center;
+						align-items:center;
+					}
+				.screen
+					{
+						height:60%;
+						width:90%;
+						background:white;
+						border-radius:5px;
+						box-sizing:border-box;
+						padding-right:2%;
+						display:flex;
+						flex-direction:column;
+						justify-content:space-around;
+						align-items:end;
+						font-size:30px;
+					}
+				#button-space
+					{
+						height:80%;
+						width:100%;
+						display:flex;
+						flex-direction:rows;
+						flex-wrap:wrap;
+						justify-content:space-around;
+						align-items:center;
+						background-color:#9C9C9C;
+					}
+				.button
+					{
+						height:70px;
+						width:70px;
+						border-radius:50%;
+						background-color:#DDDDDD;
+						box-shadow:1px 1px 5px 5px transparent;
+						border:1px solid white;
+						color:black;
+						font-size:30px;
+						display:flex;
+						justify-content:center;
+						align-items:center;
+						margin:3%;
+						background:black;
+						color:white;
+					}
+				.button:hover
+					{
+						box-shadow:1px 1px 5px 5px white;
+					}
+				.math
+					{
+						background-color:#979797;
+						color:white;
+					}
+				.clear
+					{
+						background-color:#FF6161;
+						color:white;
+					}
+				#equ
+					{
+						color:white;
+						background-color:orange;
+						font-weight:bold;
+					}
+			</style>
+		</head>
+		<body>
+			<center>	
+				<div id="main" align="center">
+					<div id="display">
+						<div class="screen" id="print"></div>
+					</div>
+					<div id="button-space">
+						<input type="button" value="C" class="button clear" onclick="document.getElementById('print').innerHTML = ' '">
+						
+						<div class="button math" onclick="">
+							<i class="ri-superscript"></i>
+						</div>
+						<div class="button math">
+							<i class="ri-delete-back-2-fill"></i>
+						</div>
+						<div class="button math" onclick="Operator('/')">
+							<i class="ri-divide-line"></i>
+						</div>
+						<input type="button" value="7" class="button" onclick="Number(7)">
+						<input type="button" value="8" class="button" onclick="Number(8)">
+						<input type="button" value="9" class="button" onclick="Number(9)">
+						
+						<div class="button math" onclick="Operator('*')">
+							<i class="ri-close-line"></i>
+						</div>
+						<input type="button" value="4" class="button" onclick="Number(4)">
+						<input type="button" value="5" class="button" onclick="Number(5)">
+						<input type="button" value="6" class="button" onclick="Number(6)">
+						
+						<div class="button math" onclick="Operator('-')">
+							<i class="ri-subtract-line"></i>
+						</div>
+						
+						<input type="button" value="1" class="button" onclick="Number(1)">
+						<input type="button" value="2" class="button" onclick="Number(2)">
+						<input type="button" value="3" class="button" onclick="Number(3)">
+						
+						<div class="button math" id="Plus" onclick="Operator('+')">
+							<i class="ri-add-line"></i>
+						</div>
+						
+						<input type="button" value="00" class="button" onclick="Number('00')">
+						<input type="button" value="0" class="button" onclick="Number('0')">
+						<input type="button" value="." class="button" onclick="Number('.')">
+						
+						<input type="button" value="=" class="button" id="equ" onclick="Equal()">
+					</div>
+				</div>
+			</div>
+			<script>
+				let Input1 = ' '; //to store first value enter in display
+				
+				
+				function Number(value){			//function to print number on display
+					let print = document.getElementById('print');
+						print.innerHTML += value;
+				}
+				
+				function Operator(sign){		//function to print operator on display & store value in Variable
+					
+					let Store = document.getElementById('print');	
+						Input1 = Store.innerHTML; 		// variable store value in global varialbe Input1 
+					
+						document.getElementById('print').innerHTML = ' ';	//to clear display
+						
+					//	Store.innerHTML = sign;	//to print variable on display
+						Operate = sign;	// to store operator in variable
+				}
+				
+				let Operate = ' '	// variable to store operator
+				
+				function Equal(){			// function to onclick equals to button to get operation 
+					let Input2 = document.getElementById('print').innerHTML;
+						
+					if(Operate == '+'){
+						document.getElementById('print').innerHTML = parseInt(Input1) + parseInt(Input2);
+						console.log(Input1 +' Input1'+ '\n' +Input2 + ' Input2');
+					}else if (Operate == '-'){
+						document.getElementById('print').innerHTML = parseInt(Input1) - parseInt(Input2);
+						console.log(Input1 +' Input1'+ '\n' +Input2 + ' Input2');
+					}else if (Operate == '*'){
+						document.getElementById('print').innerHTML = parseInt(Input1) * parseInt(Input2);
+						console.log(Input1 +' Input1'+ '\n' +Input2 + ' Input2');
+					}else if (Operate == '/'){
+						document.getElementById('print').innerHTML = parseInt(Input1) / parseInt(Input2);
+						console.log(Input1 +' Input1'+ '\n' +Input2 +' Input2');
+					}else{document.getElementById('print').innerHTML = 'wrong';
+						console.log(Input1 +' Input1'+ '\n' +Input2 + ' Input2');}
+				}
+				
+				
+			</script>
+		</body>
+	</html>
